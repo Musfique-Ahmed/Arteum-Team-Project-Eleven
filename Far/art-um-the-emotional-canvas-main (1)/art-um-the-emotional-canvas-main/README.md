@@ -1,73 +1,73 @@
-# Welcome to your Lovable project
+# Artéum — The Emotional Canvas
 
-## Project info
+An immersive Vite + React + TypeScript experience for browsing, uploading, and exploring emotion-driven digital art. The app ships with mobile-first layouts, shadcn-ui components, framer-motion interactions, and sample gallery data so you can preview the experience without wiring up backends.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Quick Start
 
-## How can I edit this code?
+- Prerequisites: Node 18+ and npm.
+- Install dependencies: `npm install`
+- Run the dev server: `npm run dev` (Vite opens on http://localhost:8080/ by default)
+- Lint the code: `npm run lint`
+- Production build: `npm run build` and preview with `npm run preview`
 
-There are several ways of editing your application.
+## Core Features
 
-**Use Lovable**
+- Emotion-driven gallery with masonry grid and animated splash entry on the home feed [src/pages/Index.tsx](src/pages/Index.tsx).
+- Search with trending and recent suggestions, inline filtering, and artwork detail modal [src/pages/Search.tsx](src/pages/Search.tsx).
+- Trending leaderboard with impact scores and animated hero card [src/pages/Trending.tsx](src/pages/Trending.tsx).
+- Supabase-authenticated profile with gallery tabs and sign-out flow [src/pages/Profile.tsx](src/pages/Profile.tsx).
+- Upload workflow with image preview, emotion tagging, premium toggle, and Supabase storage insert [src/pages/Upload.tsx](src/pages/Upload.tsx).
+- Force-directed “Invisible Network” visualization linking artworks, artists, and emotions [src/pages/Network.tsx](src/pages/Network.tsx).
+- Notification feed with typed variants and “mark all read” control [src/pages/Notifications.tsx](src/pages/Notifications.tsx).
+- Bottom navigation, header, and shared UI primitives from shadcn-ui under [src/components](src/components) and [src/components/ui](src/components/ui).
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Environment Variables
 
-Changes made via Lovable will be committed automatically to this repo.
+Supabase is initialized in [src/integrations/supabase/client.ts](src/integrations/supabase/client.ts) and expects:
 
-**Use your preferred IDE**
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_PUBLISHABLE_KEY`
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Create a `.env.local` (or `.env`) at the project root and restart the dev server after changes.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Project Structure
 
-Follow these steps:
+- App shell and routing: [src/App.tsx](src/App.tsx), [src/main.tsx](src/main.tsx)
+- Pages: home, search, trending, notifications, profile, upload, network, auth, 404 under [src/pages](src/pages)
+- UI and layout: header, bottom nav, cards, masonry grid, dialogs under [src/components](src/components)
+- Hooks: shared toast and mobile detection under [src/hooks](src/hooks)
+- Styling: Tailwind configuration and global styles in [tailwind.config.ts](tailwind.config.ts) and [src/index.css](src/index.css)
+- Supabase types and client: [src/integrations/supabase](src/integrations/supabase)
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## Supabase Notes
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- Auth flows use `supabase.auth` (email/password). Profile fetching in the profile page reads from a `profiles` table; ensure your schema matches or adjust the queries.
+- Upload uses the `artworks` storage bucket and inserts into an `artworks` table. Update the bucket/table names if your Supabase setup differs.
+- Local development requires the publishable key only; secure operations should happen via RLS/server-side rules in production.
 
-# Step 3: Install the necessary dependencies.
-npm i
+## Design System
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+- Tailwind CSS with custom theme tokens (champagne, sapphire, cranberry) and glassmorphism accents.
+- shadcn-ui primitives (buttons, inputs, dialogs, tooltips, toasts) extended in [src/components/ui](src/components/ui).
+- Motion via framer-motion for page and component transitions.
+- Visual direction aligns with our selected 5/6/10 theme palette from design exploration.
 
-**Edit a file directly in GitHub**
+## Scripts
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- `npm run dev` — start Vite dev server
+- `npm run build` — production build
+- `npm run build:dev` — development-mode build
+- `npm run preview` — preview the production build
+- `npm run lint` — run ESLint
 
-**Use GitHub Codespaces**
+## Troubleshooting
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- If `vite` is not found, ensure dependencies are installed (`npm install`).
+- Supabase errors during auth or upload usually indicate missing env vars or schema differences; verify your `.env` and database tables/buckets.
 
-## What technologies are used for this project?
+## Roadmap Ideas
 
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- Replace sample artwork arrays with live Supabase data.
+- Add pagination/filters for large galleries.
+- Wire notifications to Supabase realtime.
+- Introduce tests (React Testing Library, Vitest) and CI lint/build checks.
