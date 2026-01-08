@@ -1,0 +1,273 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Artéum Design System — Onyx & Champagne (Warm Luxury) */
+
+@layer base {
+  :root {
+    /* Core Palette */
+    --background: 220 33% 3%; /* Onyx #07080A */
+    --background-secondary: 215 35% 10%; /* Charcoal #0F1722 */
+    --foreground: 220 25% 97%; /* #F6F7F9 */
+    
+    /* Brand Accents */
+    --accent-champagne: 38 40% 60%; /* #C9A66B */
+    --accent-cranberry: 350 75% 42%; /* #B91C3A */
+    --accent-sapphire: 210 80% 31%; /* #0F4C8C */
+    
+    /* Semantic Tokens */
+    --card: 215 35% 10%;
+    --card-foreground: 220 25% 97%;
+    
+    --popover: 215 35% 8%;
+    --popover-foreground: 220 25% 97%;
+    
+    --primary: 38 40% 60%;
+    --primary-foreground: 220 33% 3%;
+    
+    --secondary: 215 35% 15%;
+    --secondary-foreground: 220 25% 97%;
+    
+    --muted: 215 20% 20%;
+    --muted-foreground: 215 18% 65%; /* #97A3B3 */
+    
+    --accent: 38 40% 60%;
+    --accent-foreground: 220 33% 3%;
+    
+    --destructive: 350 75% 42%;
+    --destructive-foreground: 220 25% 97%;
+    
+    --border: 215 25% 18%;
+    --input: 215 25% 15%;
+    --ring: 38 40% 60%;
+    
+    --radius: 0.5rem;
+    --radius-card: 1rem;
+    --radius-sm: 0.5rem;
+    
+    /* Animation Tokens */
+    --animation-fast: 300ms;
+    --animation-slow: 450ms;
+    
+    /* Glassmorphism */
+    --glass-bg: rgba(15, 23, 34, 0.6);
+    --glass-border: rgba(201, 166, 107, 0.15);
+    --glass-blur: 20px;
+    
+    /* Gradients */
+    --gradient-champagne: linear-gradient(135deg, hsl(38 45% 65%), hsl(38 35% 50%));
+    --gradient-onyx: linear-gradient(180deg, hsl(220 33% 3%), hsl(215 35% 10%));
+    --gradient-metallic: linear-gradient(135deg, hsl(38 50% 70%) 0%, hsl(38 35% 50%) 50%, hsl(38 50% 65%) 100%);
+    
+    /* Shadows */
+    --shadow-card: 0 4px 24px -4px rgba(0, 0, 0, 0.5);
+    --shadow-glow-gold: 0 0 40px rgba(201, 166, 107, 0.2);
+    --shadow-elevated: 0 8px 32px -8px rgba(0, 0, 0, 0.6);
+
+    --sidebar-background: 215 35% 10%;
+    --sidebar-foreground: 220 25% 97%;
+    --sidebar-primary: 38 40% 60%;
+    --sidebar-primary-foreground: 220 33% 3%;
+    --sidebar-accent: 215 35% 15%;
+    --sidebar-accent-foreground: 220 25% 97%;
+    --sidebar-border: 215 25% 18%;
+    --sidebar-ring: 38 40% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', 'DM Sans', sans-serif;
+  }
+  
+  /* Prevent image dragging and right-click */
+  img.protected {
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+  }
+}
+
+@layer components {
+  /* Glass Morphism Panel */
+  .glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+  }
+  
+  /* Metallic Sheen Button */
+  .btn-champagne {
+    background: var(--gradient-metallic);
+    color: hsl(var(--background));
+    font-weight: 600;
+    transition: all var(--animation-fast) ease-out;
+    box-shadow: 0 4px 16px rgba(201, 166, 107, 0.3);
+  }
+  
+  .btn-champagne:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(201, 166, 107, 0.4);
+  }
+  
+  .btn-champagne:active {
+    transform: scale(0.98);
+  }
+  
+  /* Neumorphic Card */
+  .card-neumorphic {
+    background: hsl(var(--card));
+    border-radius: var(--radius-card);
+    box-shadow: 
+      inset 2px 2px 4px rgba(255, 255, 255, 0.03),
+      inset -2px -2px 4px rgba(0, 0, 0, 0.3),
+      var(--shadow-card);
+  }
+  
+  /* Emotion Badges */
+  .emotion-gold {
+    background: hsl(var(--accent-champagne) / 0.2);
+    color: hsl(var(--accent-champagne));
+    border: 1px solid hsl(var(--accent-champagne) / 0.3);
+  }
+  
+  .emotion-crimson {
+    background: hsl(var(--accent-cranberry) / 0.2);
+    color: hsl(var(--accent-cranberry));
+    border: 1px solid hsl(var(--accent-cranberry) / 0.3);
+  }
+  
+  .emotion-sapphire {
+    background: hsl(var(--accent-sapphire) / 0.2);
+    color: hsl(var(--accent-sapphire));
+    border: 1px solid hsl(var(--accent-sapphire) / 0.3);
+  }
+  
+  /* Typography Classes */
+  .font-display {
+    font-family: 'Playfair Display', 'Cormorant Garamond', serif;
+  }
+  
+  .font-artist {
+    font-family: 'Crimson Text', serif;
+  }
+  
+  /* Shimmer Skeleton */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 0%,
+      hsl(var(--muted-foreground) / 0.1) 50%,
+      hsl(var(--muted)) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+}
+
+@layer utilities {
+  /* Fade In Animation */
+  .animate-fade-in {
+    animation: fadeIn var(--animation-slow) ease-out forwards;
+  }
+  
+  .animate-fade-in-up {
+    animation: fadeInUp var(--animation-slow) ease-out forwards;
+  }
+  
+  .animate-fade-in-scale {
+    animation: fadeInScale var(--animation-slow) ease-out forwards;
+  }
+  
+  .animate-glow-pulse {
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+  
+  .animate-text-reveal {
+    animation: textReveal 1.2s ease-out forwards;
+  }
+  
+  .animate-letter-float {
+    animation: letterFloat 2s ease-in-out infinite;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes fadeInUp {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+  }
+  
+  @keyframes fadeInScale {
+    from { 
+      opacity: 0; 
+      transform: scale(0.95); 
+    }
+    to { 
+      opacity: 1; 
+      transform: scale(1); 
+    }
+  }
+  
+  @keyframes glowPulse {
+    0%, 100% { 
+      filter: drop-shadow(0 0 20px rgba(201, 166, 107, 0.3)); 
+    }
+    50% { 
+      filter: drop-shadow(0 0 40px rgba(201, 166, 107, 0.5)); 
+    }
+  }
+  
+  @keyframes textReveal {
+    0% {
+      opacity: 0;
+      letter-spacing: 0.5em;
+      filter: blur(10px);
+    }
+    50% {
+      opacity: 0.5;
+      filter: blur(5px);
+    }
+    100% {
+      opacity: 1;
+      letter-spacing: 0.15em;
+      filter: blur(0);
+    }
+  }
+  
+  @keyframes letterFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+  }
+  
+  /* Stagger Animation Delays */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+  .delay-600 { animation-delay: 600ms; }
+  .delay-700 { animation-delay: 700ms; }
+  .delay-800 { animation-delay: 800ms; }
+}
